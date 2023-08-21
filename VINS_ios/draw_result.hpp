@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <opencv2/opencv.hpp>
 #include <eigen3/Eigen/Dense>
+#include <opencv2/opencv.hpp>
 #include "utility.hpp"
 #include "global_param.hpp"
 #include "delaunay.h"

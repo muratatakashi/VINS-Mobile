@@ -6,8 +6,8 @@
 //  Copyright © 2017 HKUST Aerial Robotics. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import <UIKit/UIKit.h>
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {

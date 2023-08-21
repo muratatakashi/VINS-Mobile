@@ -6,7 +6,6 @@
 //  Copyright © 2017 HKUST Aerial Robotics. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <opencv2/imgcodecs/ios.h>
 #import <opencv2/videoio/cap_ios.h>
 #import "feature_tracker.hpp"
@@ -15,11 +14,13 @@
 #import "VINS.hpp"
 #include <queue>
 #import "draw_result.hpp"
-#import <CoreMotion/CoreMotion.h>
 #include "keyframe.h"
 #include "loop_closure.h"
 #include "keyfame_database.h"
 #import <sys/utsname.h>
+
+#import <CoreMotion/CoreMotion.h>
+#import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController<CvVideoCameraDelegate,UITextViewDelegate>
 {
