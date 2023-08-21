@@ -1759,7 +1759,12 @@ DeviceType deviceName()
     NSString *device = [NSString stringWithCString:systemInfo.machine
                                           encoding:NSUTF8StringEncoding];
     DeviceType device_type;
-    if(([device compare:@"iPhone9,1"] == NSOrderedSame) ||
+    if([device compare:@"iPhone14,2"] == NSOrderedSame)
+    {
+        printf("Device iPhone13P\n");
+        device_type = iPhone13P;
+    }
+    else if(([device compare:@"iPhone9,1"] == NSOrderedSame) ||
        ([device compare:@"iPhone9,3"] == NSOrderedSame))
     {
         printf("Device iPhone7\n");
@@ -1792,6 +1797,12 @@ DeviceType deviceName()
     {
         printf("Device iPad pro 12.9\n");
         device_type = iPadPro129;
+    }
+    else if(([device compare:@"iPad13,7"] == NSOrderedSame)||
+            ([device compare:@"iPad13,8"] == NSOrderedSame))
+    {
+        printf("Device iPad pro 11\n");
+        device_type = iPadPro11;
     }
     else
     {
