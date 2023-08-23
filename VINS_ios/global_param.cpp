@@ -25,15 +25,15 @@ bool setGlobalParam(DeviceType device)
 {
     switch (device) {
         case iPhone13P:
-            printf("Device iPhone7 plus param\n");
-            FOCUS_LENGTH_X = 526.600;
-            FOCUS_LENGTH_Y = 526.678;
-            PX = 243.481;
-            PY = 315.280;
-            
+            printf("Device iPhone13 pro param\n");
+            FOCUS_LENGTH_X = 526.958;
+            FOCUS_LENGTH_Y = 527.179;
+            PX = 244.473;
+            PY = 313.844;
             SOLVER_TIME = 0.06;
             FREQ = 3;
             
+            //extrinsic param
             TIC_X = 0.0;
             TIC_Y = 0.092;
             TIC_Z = 0.01;

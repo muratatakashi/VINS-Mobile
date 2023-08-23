@@ -230,7 +230,10 @@ bool imageCacheEnabled = cameraMode && !USE_PNP;
     isCapturing = NO;
     
     [CameraUtils setExposureOffset: -1.0f];
-    [videoCamera start];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [videoCamera start];
+    });
     
     /***************************************UI configuration*****************************************/
     UIPanGestureRecognizer *resultPanGestureRecognizer = [[UIPanGestureRecognizer alloc]
@@ -589,7 +592,7 @@ Matrix3d pnp_R;
         TE(visualize);
     } else {
         // Not capturing, means not started yet
-        cv::cvtColor(image, image, COLOR_BGRA2RGB);
+//        cv::cvtColor(image, image, COLOR_BGRA2RGBA);
         cv::flip(image,image,-1);
         //BOOL isNeedRotation = image.size() != frameSize;
         //if (isNeedRotation)

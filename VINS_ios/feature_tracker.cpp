@@ -255,7 +255,8 @@ void FeatureTracker::readImage(const cv::Mat &_img, cv::Mat &result, int _frame_
             setMask();
             int n_max_cnt = MAX_CNT - static_cast<int>(forw_pts.size());
             
-            if(n_max_cnt>0)
+//            if(n_max_cnt>0)
+            if(n_max_cnt>0 && (mask.empty() || (mask.type() == CV_8UC1 && mask.size() == forw_img.size())))
             {
                 n_pts.clear();
                 TS(time_goodfeature);
