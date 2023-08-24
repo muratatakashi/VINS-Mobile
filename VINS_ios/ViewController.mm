@@ -558,7 +558,7 @@ Matrix3d pnp_R;
                 cv::flip(image,tmp2,-1);
                 image = tmp2;
                 if(vins.solver_flag != VINS::NON_LINEAR || !start_show)
-                    cv::cvtColor(image, image, COLOR_RGBA2BGR);
+                    cv::cvtColor(image, image, COLOR_RGBA2BGRA);
             }
         }
         else //show VINS
@@ -583,8 +583,11 @@ Matrix3d pnp_R;
             down_origin_image.copyTo(imageROI, mask);
             
             
-            cv::cvtColor(tmp2, image, COLOR_BGRA2BGR);
-            cv::flip(image,tmp2,1);
+//            cv::cvtColor(tmp2, image, COLOR_BGRA2BGR);
+//            cv::flip(image,tmp2,1);
+            
+            cv::flip(tmp2,image,1);
+            
             if (isNeedRotation)
                 image = tmp2.t();
         }

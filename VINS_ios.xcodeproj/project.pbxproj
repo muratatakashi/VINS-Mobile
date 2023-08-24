@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		39CAFAC42A95DA0500CB6021 /* ViewController2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39CAFAC32A95DA0500CB6021 /* ViewController2.mm */; };
 		8A2B70871E7932F100466A07 /* brief_k10L6.bin in Resources */ = {isa = PBXBuildFile; fileRef = 8A2B70861E7932F100466A07 /* brief_k10L6.bin */; };
 		8A2B70881E79338700466A07 /* brief_k10L6.bin in Resources */ = {isa = PBXBuildFile; fileRef = 8A2B70861E7932F100466A07 /* brief_k10L6.bin */; };
 		8A4DD0051E6C13DA009FCC78 /* BowVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C22203921E670F2000B48629 /* BowVector.cpp */; };
@@ -136,8 +135,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		39CAFAC22A95DA0500CB6021 /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
-		39CAFAC32A95DA0500CB6021 /* ViewController2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController2.mm; sourceTree = "<group>"; };
 		8A2B70861E7932F100466A07 /* brief_k10L6.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = brief_k10L6.bin; path = Resources/brief_k10L6.bin; sourceTree = SOURCE_ROOT; };
 		8AA6E0331E768D2B002DCA4A /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		8AB3747B1E6BA37400C1E398 /* VINS-ios-framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "VINS-ios-framework.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -482,8 +479,6 @@
 				C2B5373F1DB6491D00E235BC /* Supporting Files */,
 				8AE0E4611E7E5C7B0082912B /* CameraUtils.h */,
 				8AE0E4621E7E5C7B0082912B /* CameraUtils.m */,
-				39CAFAC22A95DA0500CB6021 /* ViewController2.h */,
-				39CAFAC32A95DA0500CB6021 /* ViewController2.mm */,
 			);
 			path = VINS_ios;
 			sourceTree = "<group>";
@@ -802,7 +797,6 @@
 				C222039F1E670F2000B48629 /* BowVector.cpp in Sources */,
 				C24B640F1F02A35000C42D53 /* perspective_factor.cpp in Sources */,
 				C22203AE1E67124100B48629 /* loop_closure.cpp in Sources */,
-				39CAFAC42A95DA0500CB6021 /* ViewController2.mm in Sources */,
 				C25458F81DBB28E20011DF1C /* projection_facor.cpp in Sources */,
 				C22203A41E670F2000B48629 /* QueryResults.cpp in Sources */,
 				8AE0E4641E7E5C7B0082912B /* CameraUtils.m in Sources */,
