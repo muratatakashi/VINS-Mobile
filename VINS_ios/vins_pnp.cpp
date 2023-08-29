@@ -89,6 +89,9 @@ void vinsPnP::updateFeatures(vector<IMG_MSG_LOCAL> &feature_msg)
         int j = 0;
         for (auto &it : feature_msg)
         {
+            if(features[i].size() <= j) {
+                break;
+            }
             while(features[i][j].id < it.id)
             {
                 j++;

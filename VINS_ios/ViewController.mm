@@ -215,12 +215,9 @@ bool imageCacheEnabled = cameraMode && !USE_PNP;
                         initWithParentView:imageView];
     
     self.videoCamera.delegate = self;
-    self.videoCamera.defaultAVCaptureDevicePosition =
-    AVCaptureDevicePositionBack;
-    
+    self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    self.videoCamera.defaultAVCaptureSessionPreset =
-    AVCaptureSessionPreset640x480;
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
 #ifdef DATA_EXPORT
     self.videoCamera.defaultFPS = 1;
 #else
@@ -340,7 +337,7 @@ bool imageCacheEnabled = cameraMode && !USE_PNP;
     if(versionCheck && deviceCheck)
     {
         [self imuStartUpdate];
-        isCapturing = YES;
+//        isCapturing = YES;
         [mainLoop start];
         motionManager = [[CMMotionManager alloc] init];
         frameSize = cv::Size(videoCamera.imageWidth,
@@ -382,17 +379,17 @@ Matrix3d pnp_R;
         Group[1] = highPart;
         double* time_now_decode = (double*)Group;
         double time_stamp = *time_now_decode;
-        
+
         if(lateast_imu_time <= 0)
         {
-            cv::cvtColor(image, image, COLOR_BGRA2RGB);
+//            cv::cvtColor(image, image, COLOR_BGRA2RGB);
             cv::flip(image,image,-1);
             return;
         }
         //img_msg->header = lateast_imu_time;
         img_msg->header = time_stamp;
         BOOL isNeedRotation = image.size() != frameSize;
-        
+
         //for save data
         cv::Mat input_frame;
         if(start_playback)
@@ -419,7 +416,7 @@ Matrix3d pnp_R;
         {
             input_frame = image;
         }
-        
+
         if(start_record)
         {
             imgData.header = img_msg->header;
@@ -432,9 +429,9 @@ Matrix3d pnp_R;
             if(!imgDataBuf.empty())
                 return;
         }
-        
+
         prevTime = mach_absolute_time();
-        
+
         cv::Mat gray;
         cv::cvtColor(input_frame, gray, COLOR_RGBA2GRAY);
         cv::Mat img_with_feature;
@@ -444,16 +441,16 @@ Matrix3d pnp_R;
         clahe->apply(gray, img_equa);
         //img_equa = gray;
         TS(time_feature);
-        
+
         m_depth_feedback.lock();
         featuretracker.solved_features = solved_features;
         featuretracker.solved_vins = solved_vins;
         m_depth_feedback.unlock();
-        
+
         m_imu_feedback.lock();
         featuretracker.imu_msgs = getImuMeasurements(img_msg->header);
         m_imu_feedback.unlock();
-        
+
         vector<Point2f> good_pts;
         vector<double> track_len;
         bool vins_normal = (vins.solver_flag == VINS::NON_LINEAR);
@@ -465,7 +462,7 @@ Matrix3d pnp_R;
         {
             cv::circle(image, good_pts[i], 0, cv::Scalar(255 * (1 - track_len[i]), 0, 255 * track_len[i]), 7); //BGR
         }
-        
+
         //image msg buf
         if(featuretracker.img_cnt==0)
         {
@@ -482,7 +479,7 @@ Matrix3d pnp_R;
                 image_data_cache.image = MatToUIImage(image);
                 image_pool.push(image_data_cache);
             }
-            
+
             if(LOOP_CLOSURE)
             {
                 m_image_buf_loop.lock();
@@ -493,7 +490,7 @@ Matrix3d pnp_R;
                 m_image_buf_loop.unlock();
             }
         }
-        
+
         featuretracker.img_cnt = (featuretracker.img_cnt + 1) % FREQ;
         for (int i = 0; i < good_pts.size(); i++)
         {
@@ -540,14 +537,15 @@ Matrix3d pnp_R;
                 cv::Mat tmp;
                 vins.drawresult.startInit = true;
                 vins.drawresult.drawAR(vins.imageAI, vins.correct_point_cloud, lateast_P, lateast_R);
-                
+
                 cv::cvtColor(image, tmp, COLOR_RGBA2BGR);
                 cv::Mat mask;
                 cv::Mat imageAI = vins.imageAI;
                 if(!imageAI.empty())
                     cv::cvtColor(imageAI, mask, COLOR_RGB2GRAY);
                 imageAI.copyTo(tmp,mask);
-                cv::cvtColor(tmp, image, COLOR_BGRA2BGR);
+//                tmp.copyTo(image);
+                cv::cvtColor(tmp, image, COLOR_BGR2BGRA);
             }
             if(DEBUG_MODE)
             {
@@ -558,7 +556,9 @@ Matrix3d pnp_R;
                 cv::flip(image,tmp2,-1);
                 image = tmp2;
                 if(vins.solver_flag != VINS::NON_LINEAR || !start_show)
-                    cv::cvtColor(image, image, COLOR_RGBA2BGRA);
+                    cv::cvtColor(image.t(), image, COLOR_RGBA2BGRA);
+                else
+                    cv::cvtColor(tmp2.t(), image, COLOR_BGR2BGRA);
             }
         }
         else //show VINS
@@ -571,7 +571,7 @@ Matrix3d pnp_R;
                 vins.drawresult.Reprojection(vins.image_show, vins.correct_point_cloud, vins.correct_Rs, vins.correct_Ps, box_in_trajectory);
             }
             cv::Mat tmp2 = vins.image_show;
-            
+
             cv::Mat down_origin_image;
             cv::resize(image.t(), down_origin_image, cv::Size(200, 150));
             cv::cvtColor(down_origin_image, down_origin_image, COLOR_BGRA2RGB);
@@ -581,28 +581,79 @@ Matrix3d pnp_R;
             cv::Mat mask;
             cv::cvtColor(down_origin_image, mask, COLOR_RGB2GRAY);
             down_origin_image.copyTo(imageROI, mask);
-            
-            
-//            cv::cvtColor(tmp2, image, COLOR_BGRA2BGR);
+
+            cv::cvtColor(tmp2, image, COLOR_RGB2BGRA);
 //            cv::flip(image,tmp2,1);
-            
-            cv::flip(tmp2,image,1);
-            
-            if (isNeedRotation)
-                image = tmp2.t();
+//            image = tmp2.t();
+
+//            cv::flip(tmp2,image,1);
+
+//            if (isNeedRotation)
+//                image = tmp2.t();
         }
-        
+
         TE(visualize);
     } else {
         // Not capturing, means not started yet
 //        cv::cvtColor(image, image, COLOR_BGRA2RGBA);
-        cv::flip(image,image,-1);
+//        cv::flip(image,image,-1);
+//        cv::rotate(image, image, cv::ROTATE_90_COUNTERCLOCKWISE);
         //BOOL isNeedRotation = image.size() != frameSize;
-        //if (isNeedRotation)
-        //    image = image.t();
+//        if (isNeedRotation)
+//            image = image.t();
+
+        cv::flip(image,image,-1);
+        image = image.t();
+
+//        UIImage* uiImage = MatToUIImage(image);
+//        uiImage = rotatedImage(uiImage, DegreesToRadians(-90));
+//        UIImageToMat(uiImage, image);
+//        cv::cvtColor(image, image, COLOR_RGB2BGRA);
+
+  
+//        // 色の反転
+//        cv::Mat image_copy;
+//        cv::cvtColor(image, image_copy, COLOR_BGR2GRAY);
+//
+//        cv::bitwise_not(image_copy, image_copy);
+//
+//        cv::Mat bgr;
+//        cv::cvtColor(image_copy, bgr, COLOR_GRAY2BGR);
+//
+//        cv::cvtColor(bgr, image, COLOR_BGR2BGRA);
     }
 }
 
+UIImage *rotatedImage(UIImage *image, CGFloat rotation) // rotation in radians
+{
+    // Calculate Destination Size
+    CGAffineTransform t = CGAffineTransformMakeRotation(rotation);
+    CGRect sizeRect = (CGRect) {.size = image.size};
+    CGRect destRect = CGRectApplyAffineTransform(sizeRect, t);
+    CGSize destinationSize = destRect.size;
+    
+    // Draw image
+    UIGraphicsBeginImageContext(destinationSize);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, destinationSize.width / 2.0f, destinationSize.height / 2.0f);
+    CGContextRotateCTM(context, rotation);
+    [image drawInRect:CGRectMake(-image.size.width / 2.0f, -image.size.height / 2.0f, image.size.width, image.size.height)];
+    
+    // Save image
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+CGFloat DegreesToRadians(CGFloat degrees)
+{
+    return degrees * M_PI / 180;
+};
+
+CGFloat RadiansToDegrees(CGFloat radians)
+{
+    return radians * 180 / M_PI;
+};
 
 /*
  Send imu data and visual data into VINS
@@ -923,6 +974,12 @@ bool start_global_optimization = false;
             
             cv::Mat current_image;
             current_image = cur_kf->image;
+            
+            // 空の時がある
+            // 空だとクラッシュする
+            if (current_image.empty()) {
+                continue;
+            }
             
             std::vector<cv::Point2f> measurements_old;
             std::vector<cv::Point2f> measurements_old_norm;
