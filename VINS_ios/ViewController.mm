@@ -337,7 +337,7 @@ bool imageCacheEnabled = cameraMode && !USE_PNP;
     if(versionCheck && deviceCheck)
     {
         [self imuStartUpdate];
-//        isCapturing = YES;
+        isCapturing = YES;
         [mainLoop start];
         motionManager = [[CMMotionManager alloc] init];
         frameSize = cv::Size(videoCamera.imageWidth,
@@ -553,12 +553,19 @@ Matrix3d pnp_R;
             }
             else
             {
-                cv::flip(image,tmp2,-1);
+                cv::flip(image,tmp2,1);
                 image = tmp2;
                 if(vins.solver_flag != VINS::NON_LINEAR || !start_show)
-                    cv::cvtColor(image.t(), image, COLOR_RGBA2BGRA);
+                    cv::cvtColor(image, image, COLOR_RGBA2BGRA);
                 else
-                    cv::cvtColor(tmp2.t(), image, COLOR_BGR2BGRA);
+                    cv::cvtColor(tmp2, image, COLOR_BGR2BGRA);
+                
+                image = image.t();
+                
+                // ABGRになってるのでBGRAに直す
+                std::vector<cv::Mat> channels;
+                cv::split(image, channels);
+                cv::merge(std::vector<cv::Mat>{channels[3], channels[0], channels[1], channels[2]}, image);
             }
         }
         else //show VINS
@@ -583,6 +590,12 @@ Matrix3d pnp_R;
             down_origin_image.copyTo(imageROI, mask);
 
             cv::cvtColor(tmp2, image, COLOR_RGB2BGRA);
+            
+            // ARGBになってるので反転する
+            std::vector<cv::Mat> channels;
+            cv::split(image, channels);
+            cv::merge(std::vector<cv::Mat>{channels[3], channels[2], channels[1], channels[0]}, image);
+            
 //            cv::flip(image,tmp2,1);
 //            image = tmp2.t();
 
@@ -602,58 +615,14 @@ Matrix3d pnp_R;
 //        if (isNeedRotation)
 //            image = image.t();
 
-        cv::flip(image,image,-1);
+        cv::flip(image,image,1);
         image = image.t();
-
-//        UIImage* uiImage = MatToUIImage(image);
-//        uiImage = rotatedImage(uiImage, DegreesToRadians(-90));
-//        UIImageToMat(uiImage, image);
-//        cv::cvtColor(image, image, COLOR_RGB2BGRA);
-
-  
-//        // 色の反転
-//        cv::Mat image_copy;
-//        cv::cvtColor(image, image_copy, COLOR_BGR2GRAY);
-//
-//        cv::bitwise_not(image_copy, image_copy);
-//
-//        cv::Mat bgr;
-//        cv::cvtColor(image_copy, bgr, COLOR_GRAY2BGR);
-//
-//        cv::cvtColor(bgr, image, COLOR_BGR2BGRA);
+        
+        std::vector<cv::Mat> channels;
+        cv::split(image, channels);
+        cv::merge(std::vector<cv::Mat>{channels[3], channels[2], channels[1], channels[0]}, image);
     }
 }
-
-UIImage *rotatedImage(UIImage *image, CGFloat rotation) // rotation in radians
-{
-    // Calculate Destination Size
-    CGAffineTransform t = CGAffineTransformMakeRotation(rotation);
-    CGRect sizeRect = (CGRect) {.size = image.size};
-    CGRect destRect = CGRectApplyAffineTransform(sizeRect, t);
-    CGSize destinationSize = destRect.size;
-    
-    // Draw image
-    UIGraphicsBeginImageContext(destinationSize);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, destinationSize.width / 2.0f, destinationSize.height / 2.0f);
-    CGContextRotateCTM(context, rotation);
-    [image drawInRect:CGRectMake(-image.size.width / 2.0f, -image.size.height / 2.0f, image.size.width, image.size.height)];
-    
-    // Save image
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-
-CGFloat DegreesToRadians(CGFloat degrees)
-{
-    return degrees * M_PI / 180;
-};
-
-CGFloat RadiansToDegrees(CGFloat radians)
-{
-    return radians * 180 / M_PI;
-};
 
 /*
  Send imu data and visual data into VINS
