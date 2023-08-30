@@ -1051,6 +1051,7 @@
 				DEVELOPMENT_TEAM = 574745DZ8Y;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT)/VINS_ios-Prefix.pch";
 				INFOPLIST_FILE = VINS_ios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobile.VINS-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1064,6 +1065,7 @@
 				DEVELOPMENT_TEAM = 574745DZ8Y;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT)/VINS_ios-Prefix.pch";
 				INFOPLIST_FILE = VINS_ios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobile.VINS-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
