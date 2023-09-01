@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39E606462AA15C90008DC87B /* keyfame_database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2442F7B1EB8D61800008A26 /* keyfame_database.cpp */; };
+		39E606472AA15CDF008DC87B /* vins_pnp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C24B64101F02A3AE00C42D53 /* vins_pnp.cpp */; };
+		39E606482AA15D12008DC87B /* perspective_factor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C24B640D1F02A35000C42D53 /* perspective_factor.cpp */; };
+		39E606492AA15D3C008DC87B /* delaunay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2442F8B1EBE137600008A26 /* delaunay.cpp */; };
+		39E6064A2AA15D81008DC87B /* triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2442F8E1EBE137600008A26 /* triangle.cpp */; };
 		8A2B70871E7932F100466A07 /* brief_k10L6.bin in Resources */ = {isa = PBXBuildFile; fileRef = 8A2B70861E7932F100466A07 /* brief_k10L6.bin */; };
 		8A2B70881E79338700466A07 /* brief_k10L6.bin in Resources */ = {isa = PBXBuildFile; fileRef = 8A2B70861E7932F100466A07 /* brief_k10L6.bin */; };
 		8A4DD0051E6C13DA009FCC78 /* BowVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C22203921E670F2000B48629 /* BowVector.cpp */; };
@@ -49,7 +54,7 @@
 		8AB3749E1E6BA39700C1E398 /* feature_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2B5379C1DB8812C00E235BC /* feature_manager.cpp */; };
 		8AB3749F1E6BA39700C1E398 /* feature_tracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2B5378E1DB64EA100E235BC /* feature_tracker.cpp */; };
 		8AB374A31E6BA39F00C1E398 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537431DB6491D00E235BC /* AppDelegate.m */; };
-		8AB374A41E6BA39F00C1E398 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C2B537461DB6491D00E235BC /* ViewController.mm */; };
+		8AB374A41E6BA39F00C1E398 /* VINSViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C2B537461DB6491D00E235BC /* VINSViewController.mm */; };
 		8AB374A51E6BA39F00C1E398 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537401DB6491D00E235BC /* main.m */; };
 		8AB374E11E6BC75300C1E398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B5374E1DB6491D00E235BC /* Assets.xcassets */; };
 		8AB374E21E6BC76400C1E398 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B537481DB6491D00E235BC /* Main.storyboard */; };
@@ -93,7 +98,7 @@
 		C28EE1D91DDC19DD005C64EA /* draw_result.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C28EE1D71DDC19DD005C64EA /* draw_result.cpp */; };
 		C2B537411DB6491D00E235BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537401DB6491D00E235BC /* main.m */; };
 		C2B537441DB6491D00E235BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537431DB6491D00E235BC /* AppDelegate.m */; };
-		C2B537471DB6491D00E235BC /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C2B537461DB6491D00E235BC /* ViewController.mm */; };
+		C2B537471DB6491D00E235BC /* VINSViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C2B537461DB6491D00E235BC /* VINSViewController.mm */; };
 		C2B5374A1DB6491D00E235BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2B537481DB6491D00E235BC /* Main.storyboard */; };
 		C2B5374D1DB6491D00E235BC /* VINS_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2B5374B1DB6491D00E235BC /* VINS_ios.xcdatamodeld */; };
 		C2B5374F1DB6491D00E235BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2B5374E1DB6491D00E235BC /* Assets.xcassets */; };
@@ -216,8 +221,8 @@
 		C2B537401DB6491D00E235BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C2B537421DB6491D00E235BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2B537431DB6491D00E235BC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C2B537451DB6491D00E235BC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C2B537461DB6491D00E235BC /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		C2B537451DB6491D00E235BC /* VINSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VINSViewController.h; sourceTree = "<group>"; };
+		C2B537461DB6491D00E235BC /* VINSViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = VINSViewController.mm; sourceTree = "<group>"; };
 		C2B537491DB6491D00E235BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C2B5374C1DB6491D00E235BC /* VINS_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VINS_ios.xcdatamodel; sourceTree = "<group>"; };
 		C2B5374E1DB6491D00E235BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -469,8 +474,8 @@
 				C2B5378D1DB64E5700E235BC /* feature */,
 				C2B537421DB6491D00E235BC /* AppDelegate.h */,
 				C2B537431DB6491D00E235BC /* AppDelegate.m */,
-				C2B537451DB6491D00E235BC /* ViewController.h */,
-				C2B537461DB6491D00E235BC /* ViewController.mm */,
+				C2B537451DB6491D00E235BC /* VINSViewController.h */,
+				C2B537461DB6491D00E235BC /* VINSViewController.mm */,
 				C2B537481DB6491D00E235BC /* Main.storyboard */,
 				C2B5374E1DB6491D00E235BC /* Assets.xcassets */,
 				C2B537501DB6491D00E235BC /* LaunchScreen.storyboard */,
@@ -746,12 +751,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E6064A2AA15D81008DC87B /* triangle.cpp in Sources */,
+				39E606492AA15D3C008DC87B /* delaunay.cpp in Sources */,
+				39E606482AA15D12008DC87B /* perspective_factor.cpp in Sources */,
+				39E606472AA15CDF008DC87B /* vins_pnp.cpp in Sources */,
+				39E606462AA15C90008DC87B /* keyfame_database.cpp in Sources */,
 				8A4DD0061E6C13DA009FCC78 /* FBrief.cpp in Sources */,
 				8A4DD0071E6C13DA009FCC78 /* FeatureVector.cpp in Sources */,
 				8AEB6B421E77C0FA00F9F3EE /* VocabularyBinary.cpp in Sources */,
 				8A4DD0291E6C1442009FCC78 /* marginalization_factor.cpp in Sources */,
 				8AB374A31E6BA39F00C1E398 /* AppDelegate.m in Sources */,
-				8AB374A41E6BA39F00C1E398 /* ViewController.mm in Sources */,
+				8AB374A41E6BA39F00C1E398 /* VINSViewController.mm in Sources */,
 				8AB374A51E6BA39F00C1E398 /* main.m in Sources */,
 				8A4DD0241E6C1401009FCC78 /* loop_closure.cpp in Sources */,
 				8A4DD01A1E6C13FB009FCC78 /* Timestamp.cpp in Sources */,
@@ -786,7 +796,7 @@
 				C25458FC1DBB2D240011DF1C /* utility.cpp in Sources */,
 				C22203A51E670F2000B48629 /* ScoringObject.cpp in Sources */,
 				C2B5379E1DB8812C00E235BC /* feature_manager.cpp in Sources */,
-				C2B537471DB6491D00E235BC /* ViewController.mm in Sources */,
+				C2B537471DB6491D00E235BC /* VINSViewController.mm in Sources */,
 				C2442F911EBE137600008A26 /* delaunay.cpp in Sources */,
 				C2B537441DB6491D00E235BC /* AppDelegate.m in Sources */,
 				8AEB6B411E77C0FA00F9F3EE /* VocabularyBinary.cpp in Sources */,
@@ -874,8 +884,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "VINS-ios-framework/Info.plist";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT)/VINS_ios-Prefix.pch";
+				INFOPLIST_FILE = VINS_ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ambergarage.VINS-ios-framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -895,8 +907,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "VINS-ios-framework/Info.plist";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT)/VINS_ios-Prefix.pch";
+				INFOPLIST_FILE = VINS_ios/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ambergarage.VINS-ios-framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";

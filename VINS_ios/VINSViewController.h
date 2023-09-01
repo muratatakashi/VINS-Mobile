@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  VINSViewController.h
 //  VINS_ios
 //
 //  Created by HKUST Aerial Robotics on 2016/10/18.
@@ -22,7 +22,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<CvVideoCameraDelegate,UITextViewDelegate>
+@interface VINSViewController : UIViewController<CvVideoCameraDelegate,UITextViewDelegate>
 {
     CvVideoCamera* videoCamera;
     BOOL isCapturing;

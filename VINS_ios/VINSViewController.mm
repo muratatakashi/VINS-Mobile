@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  VINSViewController.m
 //  VINS_ios
 //
 //  Created by HKUST Aerial Robotics on 2016/10/18.
@@ -7,10 +7,10 @@
 //
 
 #import "utility.hpp"
-#import "ViewController.h"
+#import "VINSViewController.h"
 #import "CameraUtils.h"
 
-@interface ViewController ()
+@interface VINSViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *X_label;
 @property (weak, nonatomic) IBOutlet UILabel *Y_label;
 @property (weak, nonatomic) IBOutlet UILabel *Z_label;
@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *fovLabel;
 @end
 
-@implementation ViewController
+@implementation VINSViewController
 
 /*************************** Save data for debug ***************************/
 
